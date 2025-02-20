@@ -1,38 +1,173 @@
-Filename: src/App.css
-Content:
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+}
+
+/* App container */
 .app {
   background: linear-gradient(#003366, #004080);
   min-height: 100vh;
-  font-family: 'Roboto', sans-serif;
+  color: white;
+  padding: 20px;
 }
+
+/* Login page */
 .login {
   background-color: #003366;
   min-height: 100vh;
-}
-.modal {
-  border: 2px solid #00CC66;
-  border-radius: 10px;
+  color: white;
   padding: 20px;
+  text-align: center;
 }
+
+.login h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.logo-circle {
+  width: 40px;
+  height: 40px;
+  background-color: #00CC66;
+  border-radius: 50%;
+  margin: 10px auto;
+  border: 2px solid #003366;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 2px solid #00CC66;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+header .logo-circle {
+  margin-left: 15px;
+}
+
+/* Main content */
+main {
+  padding: 20px 0;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin: 30px 0 15px;
+}
+
+/* Form elements */
+input {
+  display: block;
+  margin: 15px auto;
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Buttons */
 button {
-  border-radius: 8px;
-  transition: background-color 0.3s;
+  background-color: #00CC66;
+  color: white;
   padding: 8px 15px;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 5px;
 }
+
 button:hover {
   background-color: #00994d;
 }
-li {
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+button.logout-btn {
+  background-color: #CC0000;
+  margin-left: auto;
+}
+
+button.cancel-btn {
+  background-color: #CCCCCC;
+}
+
+/* Modal */
+.modal {
+  background-color: #ffffff;
+  color: #003366;
+  padding: 20px;
+  margin-top: 20px;
+  border: 2px solid #00CC66;
+  border-radius: 10px;
+}
+
+.modal input {
+  margin: 10px 0;
+}
+
+/* Lists */
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+/* Active subscriptions */
+.active-sub {
+  background-color: #004080;
+  padding: 15px;
+  margin: 8px 0;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  border-radius: 5px;
-  margin: 8px 0;
 }
-input {
-  padding: 10px;
-  width: 250px;
+
+.active-sub button {
+  margin-left: 10px;
+}
+
+/* Past subscriptions */
+.past-sub {
+  background-color: #666666;
+  padding: 15px;
+  margin: 8px 0;
+  border-radius: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .active-sub {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .active-sub div {
+    margin-top: 10px;
+  }
+  
+  input {
+    width: 100%;
+    max-width: 250px;
+  }
 }
