@@ -1,4 +1,5 @@
-// src/App.tsx
+Filename: src/App.tsx
+Content:
 import React, { useState } from 'react';
 import './App.css';
 
@@ -42,8 +43,7 @@ const App: React.FC = () => {
 
   const forgotPassword = () => {
     if (email) {
-      alert(`Password reset link sent to ${email} (simulated—check your inbox in a real app)`);
-      // In reality: SendGrid would email a reset link
+      alert(`Password reset link sent to ${email} (simulated)`);
     } else {
       alert('Please enter your email first');
     }
@@ -91,26 +91,10 @@ const App: React.FC = () => {
       <div className="login" style={{ backgroundColor: '#003366', color: 'white', padding: '20px', textAlign: 'center' }}>
         <h1 style={{ fontSize: '28px' }}>SubWise</h1>
         <div style={{ width: '40px', height: '40px', backgroundColor: '#00CC66', borderRadius: '50%', margin: '10px auto', border: '2px solid #003366' }}></div>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{ display: 'block', margin: '15px auto', padding: '10px', width: '250px' }}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ display: 'block', margin: '15px auto', padding: '10px', width: '250px' }}
-        />
-        <button onClick={login} style={{ backgroundColor: '#00CC66', color: 'white', padding: '10px 20px', margin: '10px' }}>
-          Log In
-        </button>
-        <button onClick={forgotPassword} style={{ backgroundColor: '#004080', color: 'white', padding: '10px 20px' }}>
-          Forgot Password
-        </button>
+        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} style={{ display: 'block', margin: '15px auto', padding: '10px', width: '250px' }} />
+        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ display: 'block', margin: '15px auto', padding: '10px', width: '250px' }} />
+        <button onClick={login} style={{ backgroundColor: '#00CC66', color: 'white', padding: '10px 20px', margin: '10px' }}>Log In</button>
+        <button onClick={forgotPassword} style={{ backgroundColor: '#004080', color: 'white', padding: '10px 20px' }}>Forgot Password</button>
       </div>
     );
   }
@@ -120,21 +104,11 @@ const App: React.FC = () => {
       <header style={{ display: 'flex', alignItems: 'center', padding: '15px', borderBottom: '2px solid #00CC66' }}>
         <h1 style={{ margin: 0, fontSize: '28px' }}>SubWise</h1>
         <div style={{ width: '40px', height: '40px', backgroundColor: '#00CC66', borderRadius: '50%', marginLeft: '15px', border: '2px solid #003366' }}></div>
-        <button
-          onClick={logout}
-          style={{ backgroundColor: '#CC0000', color: 'white', padding: '8px 15px', marginLeft: 'auto' }}
-        >
-          Logout
-        </button>
+        <button onClick={logout} style={{ backgroundColor: '#CC0000', color: 'white', padding: '8px 15px', marginLeft: 'auto' }}>Logout</button>
       </header>
       <main>
         <h2>Total Spend: ${totalSpend.toFixed(2)}</h2>
-        <button
-          style={{ backgroundColor: '#00CC66', color: 'white', padding: '10px', border: 'none', cursor: 'pointer' }}
-          onClick={() => setShowForm(true)}
-        >
-          Add Subscription
-        </button>
+        <button style={{ backgroundColor: '#00CC66', color: 'white', padding: '10px', border: 'none', cursor: 'pointer' }} onClick={() => setShowForm(true)}>Add Subscription</button>
         {showForm && (
           <div className="modal" style={{ backgroundColor: '#ffffff', color: '#003366', padding: '20px', marginTop: '20px' }}>
             <input type="text" placeholder="Name (e.g., Netflix)" value={newSub.name} onChange={(e) => setNewSub({ ...newSub, name: e.target.value })} style={{ display: 'block', margin: '10px 0' }} />
@@ -150,19 +124,8 @@ const App: React.FC = () => {
             <li key={sub.id} style={{ backgroundColor: '#004080', padding: '15px', margin: '8px 0', borderRadius: '5px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span>{sub.name} - ${sub.cost.toFixed(2)} - Due {formatDate(sub.renewalDate)}</span>
               <div>
-                <button
-                  onClick={() => negotiateSub(sub)}
-                  style={{ backgroundColor: '#00CC66', color: 'white', marginLeft: '10px', padding: '8px 15px' }}
-                  disabled={sub.lastNegotiated && new Date(sub.lastNegotiated) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)}
-                >
-                  Negotiate
-                </button>
-                <button
-                  onClick={() => deleteSub(sub.id)}
-                  style={{ backgroundColor: '#CC0000', color: 'white', marginLeft: '10px', padding: '8px 15px' }}
-                >
-                  Delete
-                </button>
+                <button onClick={() => negotiateSub(sub)} style={{ backgroundColor: '#00CC66', color: 'white', marginLeft: '10px', padding: '8px 15px' }} disabled={sub.lastNegotiated && new Date(sub.lastNegotiated) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)}>Negotiate</button>
+                <button onClick={() => deleteSub(sub.id)} style={{ backgroundColor: '#CC0000', color: 'white', marginLeft: '10px', padding: '8px 15px' }}>Delete</button>
                 {sub.lastNegotiated && <span style={{ marginLeft: '10px' }}>- Last Negotiated: {formatDate(sub.lastNegotiated)}</span>}
               </div>
             </li>
