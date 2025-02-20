@@ -1,0 +1,5 @@
+/* src/App.css */
+.app { background: linear-gradient(#003366, #004080); min-height: 100vh; font-family: 'Roboto', sans-serif; }
+.modal { border: 2px solid #00CC66; border-radius: 10px; padding: '20px'; }
+button { border-radius: 8px; transition: background-color 0.3s; padding: '8px 15px'; }
+li { display: flex; justify-content: space-between; align-items: center; padding: '15px'; border-radius: 5px; margin: '8px 0'; }
