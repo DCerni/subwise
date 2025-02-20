@@ -1,0 +1,38 @@
+Filename: src/App.css
+Content:
+.app {
+  background: linear-gradient(#003366, #004080);
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+.login {
+  background-color: #003366;
+  min-height: 100vh;
+}
+.modal {
+  border: 2px solid #00CC66;
+  border-radius: 10px;
+  padding: 20px;
+}
+button {
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #00994d;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 8px 0;
+}
+input {
+  padding: 10px;
+  width: 250px;
+}
