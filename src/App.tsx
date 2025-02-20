@@ -103,6 +103,13 @@ Best,
     return months > 0 ? months : 1;
   };
 
+  const isNegotiationDisabled = (sub: Subscription): boolean => {
+    if (!sub.lastNegotiated) return false;
+    const lastNegotiatedDate = new Date(sub.lastNegotiated);
+    const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    return lastNegotiatedDate > weekAgo;
+  };
+
   if (!loggedIn) {
     return (
       <div className="login">
@@ -131,7 +138,7 @@ Best,
       <header>
         <h1>SubWise</h1>
         <div className="logo-circle"></div>
-        <button onClick={logout}>Logout</button>
+        <button className="logout-btn" onClick={logout}>Logout</button>
       </header>
       
       <main>
@@ -161,22 +168,21 @@ Best,
               onChange={(e) => setNewSub({ ...newSub, renewalDate: e.target.value })}
             />
             <button onClick={addSub}>Save</button>
-            <button onClick={() => setShowForm(false)}>Cancel</button>
+            <button className="cancel-btn" onClick={() => setShowForm(false)}>Cancel</button>
           </div>
         )}
 
         <h3>Active Subscriptions</h3>
         <ul>
           {subs.map(sub => (
-            <li key={sub.id}>
+            <li key={sub.id} className="active-sub">
               <span>
                 {sub.name} - ${sub.cost.toFixed(2)} - Due {formatDate(sub.renewalDate)}
               </span>
               <div>
                 <button
                   onClick={() => negotiateSub(sub)}
-                  disabled={sub.lastNegotiated && 
-                    new Date(sub.lastNegotiated) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)}
+                  disabled={isNegotiationDisabled(sub)}
                 >
                   Negotiate
                 </button>
@@ -194,7 +200,7 @@ Best,
         <h3>Past Subscriptions</h3>
         <ul>
           {pastSubs.map(sub => (
-            <li key={sub.id}>
+            <li key={sub.id} className="past-sub">
               {sub.name} - ${sub.cost.toFixed(2)} - 
               Duration: {calcDuration(sub.startDate, sub.endDate!)} months - 
               Total Spent: ${(sub.cost * calcDuration(sub.startDate, sub.endDate!)).toFixed(2)}
